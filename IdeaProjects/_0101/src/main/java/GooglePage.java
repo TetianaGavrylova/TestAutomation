@@ -1,14 +1,22 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Scanner;
+
+import static org.junit.Assert.assertTrue;
+
 public class GooglePage {
     private String FieldSearch = "lst-ib";
-    private String BtnSearch = "btnI";
-    private String LinkZnic = "//a[@href='/wiki/Zraniteln%C3%BD']";
+    private String BtnImFeelingLucky = "btnI";
+    private String LinkZranitelne = "//*[@id=\"mw-content-text\"]/div/p[1]/a[15]";
+    private String EmptySpace = "gb";
+//    private StringBuffer verificationErrors = new StringBuffer();
     private WebDriver driver;
-//    private WebDriver driver = new ChromeDriver()
+
     GooglePage (WebDriver driver2) {
         driver = driver2;
         }
@@ -16,22 +24,38 @@ public class GooglePage {
     private WebElement getFieldSearch (){
         return driver.findElement(By.id(FieldSearch));
     }
-    private WebElement getBtnSearch (){
-        return driver.findElement(By.name(BtnSearch));
+    private WebElement getBtnImFeelingLucky (){
+        return driver.findElement(By.name(BtnImFeelingLucky));
     }
-    private WebElement getLinkZnic (){
-        return driver.findElement(By.xpath(LinkZnic));
+    private WebElement getLinkZranitelne () {
+        return driver.findElement(By.xpath(LinkZranitelne));
     }
+    private WebElement getEmptySpace () {
+        return driver.findElement(By.id(EmptySpace));
+
+    }
+//
+//    try {
+//        assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Panda velká");
+//    }
+//    catch (Error e) {
+//        verificationErrors.append(e.toString());
+//    }
+
     public void clearFieldSearch (){
         getFieldSearch().clear();
     }
     public void enterTextIntoFieldSearch (String ImportantText){
-        getFieldSearch().sendKeys(ImportantText);
+        getFieldSearch().sendKeys(ImportantText + Keys.ARROW_DOWN + Keys.ARROW_DOWN +Keys.ENTER);
     }
-    public void clickBtnSearch (){
-        getBtnSearch().click();
+    public void clickBtnImFeelingLucky (){
+        getBtnImFeelingLucky().click();
     }
     public void clickLink (){
-        getLinkZnic().click();
+        getLinkZranitelne().click();
     }
+    public void clickEmptySpace () {
+        getEmptySpace().click();
+    }
+
 }

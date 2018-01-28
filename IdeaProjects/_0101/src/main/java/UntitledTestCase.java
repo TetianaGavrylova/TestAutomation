@@ -32,8 +32,9 @@ import static org.junit.jupiter.api.Assertions.fail;
         public void run () {
             GooglePage page = new GooglePage(driver);
             page.clearFieldSearch();
-            page.enterTextIntoFieldSearch("Panda");
-            page.clickBtnSearch();
+            page.enterTextIntoFieldSearch("Panda wiki");
+//            page.clickEmptySpace();
+//            page.clickBtnImFeelingLucky();
             page.clickLink();
         }
 
