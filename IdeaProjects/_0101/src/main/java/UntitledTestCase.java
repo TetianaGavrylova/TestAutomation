@@ -1,13 +1,12 @@
-import java.sql.DriverManager;
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static junit.framework.TestCase.assertTrue;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.fail;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.support.ui.Select;
@@ -30,12 +29,18 @@ import static org.junit.jupiter.api.Assertions.fail;
 
         @Test
         public void run () {
-            GooglePage page = new GooglePage(driver);
+            GooglePage page = new GooglePage();
             page.clearFieldSearch();
             page.enterTextIntoFieldSearch("Panda wiki");
-//            page.clickEmptySpace();
-//            page.clickBtnImFeelingLucky();
+            page.clickEmptySpace();
+            page.clickBtnImFeelingLucky();
             page.clickLink();
+
+//            wiki part
+            page.clearFieldSearchWiki();
+            page.enterTextWiki("panda");
+            page.extractThePageTitleString();
+
         }
 
 //        @Test

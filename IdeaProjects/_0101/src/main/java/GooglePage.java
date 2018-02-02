@@ -1,13 +1,11 @@
-import org.junit.Assert;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.Scanner;
-
-import static org.junit.Assert.assertTrue;
+import java.util.concurrent.TimeUnit;
 
 public class GooglePage {
     private String FieldSearch = "lst-ib";
@@ -17,9 +15,21 @@ public class GooglePage {
 //    private StringBuffer verificationErrors = new StringBuffer();
     private WebDriver driver;
 
+//    Wiki part
+    private String FieldSearchWiki = "searchInput";
+    private String Title = "Giant panda - Wikipedia";
+
+
     GooglePage (WebDriver driver2) {
         driver = driver2;
         }
+
+    GooglePage () {
+        Class<? extends WebDriver> driverClass = ChromeDriver.class;
+        WebDriverManager.getInstance(driverClass).setup();
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+    }
 
     private WebElement getFieldSearch (){
         return driver.findElement(By.id(FieldSearch));
@@ -32,10 +42,14 @@ public class GooglePage {
     }
     private WebElement getEmptySpace () {
         return driver.findElement(By.id(EmptySpace));
-
     }
-//
-//    try {
+//    Wiki part
+    private WebElement getFieldSearchWiki (){
+        return driver.findElement(By.id(FieldSearchWiki));
+    }
+
+
+    //    try {
 //        assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Panda velká");
 //    }
 //    catch (Error e) {
@@ -46,7 +60,7 @@ public class GooglePage {
         getFieldSearch().clear();
     }
     public void enterTextIntoFieldSearch (String ImportantText){
-        getFieldSearch().sendKeys(ImportantText + Keys.ARROW_DOWN + Keys.ARROW_DOWN +Keys.ENTER);
+        getFieldSearch().sendKeys(ImportantText);
     }
     public void clickBtnImFeelingLucky (){
         getBtnImFeelingLucky().click();
@@ -57,5 +71,22 @@ public class GooglePage {
     public void clickEmptySpace () {
         getEmptySpace().click();
     }
+    public void goURL (String URL) {
+        driver.get(URL);
+    }
+    public void close () {
+        driver.close();
+    }
 
+//    Wiki part
+    public void clearFieldSearchWiki (){
+        getFieldSearchWiki().clear();
+    }
+    public void enterTextWiki (String Text){
+        getFieldSearchWiki().sendKeys(Text, Keys.DOWN, Keys.ENTER);
+    }
+    public String extractThePageTitleString() {
+        return driver.getTitle();
+//        return Title2;
+    }
 }
