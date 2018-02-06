@@ -11,14 +11,14 @@ Feature: Test1
       |User|Pas|123|
       And Close browser
 
-#      Scenario Outline: Test2
-#        Given open browser
-#        And go to <URL>
-#        And Enter search word <Search>
-#        Then Do search
-#        And Close browser
-#        Examples:
-#        |URL|Search|
-#        |https://www.google.cz/|panda|
-#        |https://www.google.cz/|fox|
-#        |https://www.wikipedia.org/|building|
+      Scenario Outline: Test2
+        Given open browser
+        And go to <URL>
+        And Enter search word <Search>
+        Then Do search
+        And Close browser
+        Examples:
+        |URL                   |Search|
+        |https://www.google.cz/|panda|
+        |https://www.google.cz/|fox|
+        |https://www.wikipedia.org/|building|

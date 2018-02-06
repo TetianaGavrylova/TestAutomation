@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions (
 
         features = {"src/test/resources/features"},
-        tags = {"@tag1"}
+        tags = {"@REST"}
 )
 
 

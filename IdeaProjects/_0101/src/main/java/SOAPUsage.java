@@ -1,5 +1,5 @@
+import net.thucydides.core.Thucydides;
 import net.yandex.speller.services.spellservice.*;
-
 import java.util.List;
 
 public class SOAPUsage {
@@ -13,6 +13,7 @@ public class SOAPUsage {
         CheckTextResponse response = port.checkText(request);
 
         List<SpellError> errorList = response.getSpellResult().getError();
+        Thucydides.getCurrentSession().put("Amount of mistakes", errorList.size());
         System.out.println("Error count " + errorList.size());
 
         List<String> lst = null;
@@ -20,5 +21,6 @@ public class SOAPUsage {
             lst = error.getS();
             }
             return lst;
+
     }
 }
