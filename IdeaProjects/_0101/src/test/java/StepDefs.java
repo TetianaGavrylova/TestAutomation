@@ -165,4 +165,11 @@ public class StepDefs {
 
         assertTrue("Wrong content", res.equals(content));
     }
+
+    @Given("^run jmeter (.*)$")
+    public void runJmeter(Integer avg) throws Exception {
+        JmeterFromJMX jmeterFromJMX = new JmeterFromJMX();
+//        jmeterFromJMX.run();
+        assertTrue("Limit", jmeterFromJMX.run() <= avg);
+    }
 }

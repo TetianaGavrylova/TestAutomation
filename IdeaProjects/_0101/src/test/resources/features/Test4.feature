@@ -11,3 +11,7 @@ Feature: TestREST
     |  404  |Igor777777|application/html |is "Igor Schwarzmann"|
     |  200  |Igor777777|application/json |is "Igor Schwarzmann"|
     |  200  |  Igor    |application/json |is "Igor Glks"       |
+
+    @apache
+    Scenario: ApacheJmeter
+      Given run jmeter 1600
