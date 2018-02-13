@@ -6,12 +6,14 @@ import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JmeterFromJMX {
-    public  Integer run() throws Exception {
+    public void run() throws Exception {
         //JMeter Engine
         StandardJMeterEngine jmeter = new StandardJMeterEngine();
 
@@ -56,24 +58,35 @@ public class JmeterFromJMX {
         jmeter.configure(testPlanTree);
         jmeter.run();
 
+    }
 
-        //checks
+    //checks
+    public List checkElapsed () throws IOException {
+        String logFile = "C:\\Users\\Igor_Gavrylov.BUDAPEST\\Downloads\\apacheJM\\apache-jmeter-3.3/RESULTS.jtl";
         List<String> results = Files.readAllLines(Paths.get(logFile));
-        Integer max = 0;
-        Integer i =0;
+        Integer elapsedMax = 0;
+        Integer elapsedSum = 0;
+        Integer elapsedAvg = 0;
+        Integer i = 0;
         if (results != null) {
             for (String line : results) {
                 if (i != 0) {
-                    Integer av = Integer.parseInt(line.split(",")[1]);
-                    if (max < av) {
-                        max = av;
+                    Integer elapsed = Integer.parseInt(line.split(",")[1]);
+                    if (elapsedMax < elapsed) {
+                        elapsedMax = elapsed;
                     }
-                }
-                else {
+                    elapsedSum = elapsedSum + elapsed;
+                    i++;
+                } else {
                     i++;
                 }
             }
         }
-            return max;
+        List<Integer> elapsedResult = new ArrayList<>();
+        elapsedAvg = elapsedSum / i;
+        elapsedResult.add(elapsedAvg);
+        elapsedResult.add(elapsedMax);
+
+        return elapsedResult;
     }
 }

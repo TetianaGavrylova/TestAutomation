@@ -12,13 +12,11 @@ public class GooglePage {
     private String BtnImFeelingLucky = "btnI";
     private String LinkZranitelne = "//*[@id=\"mw-content-text\"]/div/p[1]/a[15]";
     private String EmptySpace = "gb";
-//    private StringBuffer verificationErrors = new StringBuffer();
     private WebDriver driver;
 
 //    Wiki part
     private String FieldSearchWiki = "searchInput";
     private String Title = "Giant panda - Wikipedia";
-
 
     GooglePage (WebDriver driver2) {
         driver = driver2;
@@ -43,18 +41,12 @@ public class GooglePage {
     private WebElement getEmptySpace () {
         return driver.findElement(By.id(EmptySpace));
     }
+
 //    Wiki part
     private WebElement getFieldSearchWiki (){
         return driver.findElement(By.id(FieldSearchWiki));
     }
 
-
-    //    try {
-//        assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("Panda velká");
-//    }
-//    catch (Error e) {
-//        verificationErrors.append(e.toString());
-//    }
 
     public void clearFieldSearch (){
         getFieldSearch().clear();
@@ -87,6 +79,5 @@ public class GooglePage {
     }
     public String extractThePageTitleString() {
         return driver.getTitle();
-//       return Title2;
     }
 }

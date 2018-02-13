@@ -166,10 +166,19 @@ public class StepDefs {
         assertTrue("Wrong content", res.equals(content));
     }
 
-    @Given("^run jmeter (.*)$")
-    public void runJmeter(Integer avg) throws Exception {
+    @Given("^run jmeter$")
+    public void runJmeter() throws Exception {
         JmeterFromJMX jmeterFromJMX = new JmeterFromJMX();
-//        jmeterFromJMX.run();
-        assertTrue("Limit", jmeterFromJMX.run() <= avg);
+        jmeterFromJMX.run();
+    }
+
+    @Then("^check elapsed max (.*) and average (.*)$")
+    public void checkElapsedMaxAndAverage(Integer max, Integer avg) throws Throwable {
+        JmeterFromJMX jmeterFromJMX = new JmeterFromJMX();
+        List elapsedResult = jmeterFromJMX.checkElapsed();
+        Integer elapsedAvg = (Integer) elapsedResult.get(0);
+        Integer elapsedMax = (Integer) elapsedResult.get(1);
+        assertTrue("Maximum value of elapsed time " + elapsedAvg + " exceeded permitted value " + avg, elapsedAvg <= avg);
+        assertTrue("Average value of elapsed time " + elapsedMax + " exceeded permitted value " + max, elapsedMax <= max);
     }
 }

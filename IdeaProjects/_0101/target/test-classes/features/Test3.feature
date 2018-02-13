@@ -1,4 +1,4 @@
-@SOAP1
+@SOAP
 Feature: Test3
 
   Scenario Outline: Test3.1

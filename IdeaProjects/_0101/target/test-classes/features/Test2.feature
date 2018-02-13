@@ -1,4 +1,4 @@
-#@tag1
+@wikiPage
 Feature: Test2
 
   Scenario: Test2.1
