@@ -36,12 +36,10 @@ public class GithubUser {
         this.name = name;
     }
 
-    public static <T> T retrieveResourceFromResponse(HttpResponse response, Class<T> clazz)
-            throws IOException {
+    public static <T> T retrieveResourceFromResponse(HttpResponse response, Class<T> clazz) throws IOException {
 
         String jsonFromResponse = EntityUtils.toString(response.getEntity());
-        ObjectMapper mapper = new ObjectMapper()
-                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper.readValue(jsonFromResponse, clazz);
     }
 

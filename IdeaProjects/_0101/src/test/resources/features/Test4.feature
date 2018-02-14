@@ -1,7 +1,7 @@
 @REST
-Feature: TestREST
+Feature: Test4
 
-  Scenario Outline: Test1REST
+  Scenario Outline: Test4.1
     Given check on <error> for <name>
     Then check media <type> for name
     And check content <content> for name

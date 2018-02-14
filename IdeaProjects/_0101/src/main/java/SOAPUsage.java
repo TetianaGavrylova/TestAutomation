@@ -19,8 +19,7 @@ public class SOAPUsage {
         List<String> lst = null;
         for (SpellError error : errorList) {
             lst = error.getS();
-            }
-            return lst;
-
+        }
+        return lst;
     }
 }

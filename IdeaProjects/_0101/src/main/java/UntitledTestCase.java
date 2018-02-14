@@ -43,29 +43,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
         }
 
-//        @Test
-//        public void testUntitledTestCase() throws Exception {
-//            driver.get("https://www.google.cz/");
-//            driver.findElement(By.id("lst-ib")).clear();
-//            driver.findElement(By.id("lst-ib")).sendKeys("panda");
-//            driver.findElement(By.id("lga")).click();
-//            driver.findElement(By.name("btnI")).click();
-            // Warning: verifyTextPresent may require manual changes
-//            try {
-//                assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Panda velká[\\s\\S]*$"));
-//            } catch (Error e) {
-//                verificationErrors.append(e.toString());
-//            }
-//            // Warning: verifyTextPresent may require manual changes
-//            try {
-//                assertTrue(Pattern.compile(" *oku 2017*").matcher(driver.findElement(By.cssSelector("BODY")).getText()).find());
-//            } catch (Error e) {
-//                verificationErrors.append(e.toString());
-//            }
-//            driver.findElement(By.xpath("//a[@href='/wiki/Zraniteln%C3%BD']")).click();
-//            Thread.sleep(5000);
-//        }
-
         @After
         public void tearDown() throws Exception {
 //            driver.quit();

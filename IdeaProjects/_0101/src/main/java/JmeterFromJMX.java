@@ -18,7 +18,7 @@ public class JmeterFromJMX {
         StandardJMeterEngine jmeter = new StandardJMeterEngine();
 
         //Jmeter path
-        String Jmeterpath = "C:\\Users\\Igor_Gavrylov.BUDAPEST\\Downloads\\apacheJM\\apache-jmeter-3.3";
+        String Jmeterpath = "src\\main\\resources\\apache-jmeter-3.3";
         JMeterUtils.setJMeterHome(Jmeterpath);
         File jmeterHome = new File(Jmeterpath);
 
@@ -34,7 +34,6 @@ public class JmeterFromJMX {
         File in = new File(jmeterHome + "/bin/Test1.jmx");
         HashTree testPlanTree = SaveService.loadTree(in);
         //  in.close();
-
 
         //Results and Logging
         Summariser summer = null;
@@ -53,16 +52,14 @@ public class JmeterFromJMX {
         logger.setFilename(logFile);
         testPlanTree.add(testPlanTree.getArray()[0], logger);
 
-
         // Run JMeter Test
         jmeter.configure(testPlanTree);
         jmeter.run();
-
     }
 
     //checks
     public List checkElapsed () throws IOException {
-        String logFile = "C:\\Users\\Igor_Gavrylov.BUDAPEST\\Downloads\\apacheJM\\apache-jmeter-3.3/RESULTS.jtl";
+        String logFile = "src\\main\\resources\\apache-jmeter-3.3\\RESULTS.jtl";
         List<String> results = Files.readAllLines(Paths.get(logFile));
         Integer elapsedMax = 0;
         Integer elapsedSum = 0;

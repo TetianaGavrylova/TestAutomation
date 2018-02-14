@@ -5,7 +5,6 @@ Feature: Test3
     And Check SOAP with <text>
     And Check amount of mistakes <ExpectedMistakes>
     Then Check that there is the right word <RightWord>
-
     Examples:
     |   text        |ExpectedMistakes|RightWord|
     |Hellio         |     1          |Hello    |
