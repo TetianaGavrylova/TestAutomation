@@ -11,3 +11,4 @@ Feature: Test3
     |Hellio brathher|     2          |brother  |
     |Hello World    |     0          |         |
     |Hello World    |     1          |         |
+    |Hellio         |     1          |    1    |

@@ -7,9 +7,10 @@ import static org.junit.Assert.assertTrue;
 
 public class StepDefinitionsJmeter {
 
-    @Given("^run jmeter$")
-    public void runJmeter() throws Exception {
+    @Given("^run jmeter for (.*) users and (.*) loops$")
+    public void runJmeter(Integer users, Integer loops) throws Exception {
         JmeterFromJMX jmeterFromJMX = new JmeterFromJMX();
+        jmeterFromJMX.createTesteFromTemplate(users, loops);
         jmeterFromJMX.run();
     }
 
@@ -19,7 +20,7 @@ public class StepDefinitionsJmeter {
         List elapsedResult = jmeterFromJMX.checkElapsed();
         Integer elapsedAvg = (Integer) elapsedResult.get(0);
         Integer elapsedMax = (Integer) elapsedResult.get(1);
-        assertTrue("Maximum value of elapsed time " + elapsedAvg + " exceeded permitted value " + avg, elapsedAvg <= avg);
-        assertTrue("Average value of elapsed time " + elapsedMax + " exceeded permitted value " + max, elapsedMax <= max);
+        assertTrue("Average value of elapsed time " + elapsedAvg + " exceeded permitted value " + avg, elapsedAvg <= avg);
+        assertTrue("Maximum value of elapsed time " + elapsedMax + " exceeded permitted value " + max, elapsedMax <= max);
     }
 }

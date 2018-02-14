@@ -6,19 +6,24 @@ import org.apache.jmeter.util.JMeterUtils;
 import org.apache.jorphan.collections.HashTree;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JmeterFromJMX {
+
+    private String Jmeterpath = "src/main/resources/apache-jmeter-3.3";
+
     public void run() throws Exception {
         //JMeter Engine
         StandardJMeterEngine jmeter = new StandardJMeterEngine();
 
         //Jmeter path
-        String Jmeterpath = "src\\main\\resources\\apache-jmeter-3.3";
+//        String Jmeterpath = "src\\main\\resources\\apache-jmeter-3.3";
         JMeterUtils.setJMeterHome(Jmeterpath);
         File jmeterHome = new File(Jmeterpath);
 
@@ -30,8 +35,15 @@ public class JmeterFromJMX {
         // Initialize JMeter SaveService
         SaveService.loadProperties();
 
+
         // Load existing .jmx Test Plan
-        File in = new File(jmeterHome + "/bin/Test1.jmx");
+        File in = null;
+        if (Files.exists(Paths.get(Jmeterpath + "/bin/TestNew.jmx"))) {
+
+            in = new File(jmeterHome + "/bin/TestNew.jmx");
+        } else {
+            in = new File(jmeterHome + "/bin/Test1.jmx");
+        }
         HashTree testPlanTree = SaveService.loadTree(in);
         //  in.close();
 
@@ -44,7 +56,6 @@ public class JmeterFromJMX {
 
         // Store execution results into a .jtl file
         String logFile = jmeterHome + "/" + "RESULTS.jtl";
-
         if (Files.exists(Paths.get(logFile))) {
             Files.delete(Paths.get(logFile));
         }
@@ -57,9 +68,18 @@ public class JmeterFromJMX {
         jmeter.run();
     }
 
+    public void createTesteFromTemplate (Integer LoopCount, Integer UserCount) throws IOException {
+        String TestTemp = new String(Files.readAllBytes(Paths.get(Jmeterpath + "/bin/TestTemplate.jmx")));
+        TestTemp = TestTemp.replaceAll("TBR_LoopsCount", LoopCount.toString());
+        TestTemp = TestTemp.replaceAll("TBR_UsersCount", UserCount.toString());
+        FileOutputStream stream = new FileOutputStream(Jmeterpath + "/bin/TestNew.jmx");
+        stream.write(TestTemp.getBytes(Charset.forName("UTF-8")));
+        stream.close();
+    }
+
     //checks
     public List checkElapsed () throws IOException {
-        String logFile = "src\\main\\resources\\apache-jmeter-3.3\\RESULTS.jtl";
+        String logFile = Jmeterpath + "/RESULTS.jtl";
         List<String> results = Files.readAllLines(Paths.get(logFile));
         Integer elapsedMax = 0;
         Integer elapsedSum = 0;

@@ -36,7 +36,7 @@ public class StepDefinitionsSOAP {
 
     @Then("^Check that there is the right word (.*)$")
     public void checkThatThereIsTheRightWord (String RightWord)  {
-        assertTrue("Contains Right Word " +RightWord, ((List<String>)Thucydides.getCurrentSession().get("Words")).contains(RightWord));
+        assertTrue("Doesn't contain Right Word \"" +RightWord + "\"", ((List<String>)Thucydides.getCurrentSession().get("Words")).contains(RightWord));
         System.out.println(((List<String>)Thucydides.getCurrentSession().get("Words")));
     }
 }
