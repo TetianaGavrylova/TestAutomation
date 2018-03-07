@@ -40,9 +40,9 @@ public class CalculatorEngine implements ActionListener {
             selectedAction = '/';
             currentResult=displayValue;
             parent.displayField.setText("");
-        } else if (src == parent.buttonMultiply){
+        } else if (src == parent.buttonMultiply) {
             selectedAction = '*';
-            currentResult=displayValue;
+            currentResult = displayValue;
             parent.displayField.setText("");
         } else if (src == parent.buttonEqual){
             // Совершить арифметическое действие, в зависимости от selectedAction, обновить переменную currentResult и показать результат на дисплее
@@ -59,7 +59,6 @@ public class CalculatorEngine implements ActionListener {
                     parent.displayField.setText("" + currentResult);
                 } else {
                     parent.displayField.setText("Can't divide to " + displayValue);
-
                 }
             }else if (selectedAction=='*'){
                 currentResult*=displayValue;
