@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @CucumberOptions (
         features = {"src/test/resources/features"},
-        tags = {"@SOAP"}
+        tags = {"@googlePage"}
 )
 
     public class Runner {
